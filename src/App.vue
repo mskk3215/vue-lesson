@@ -18,6 +18,12 @@ function countUp() {
 }
 function clientX(event, times) {
   count.value = event.clientX * times
+const isRed = ref(true)
+const isBgBlue = ref(true)
+const className = ref('red')
+function toggleClass() {
+  isRed.value = !isRed.value
+  isBgBlue.value = !isBgBlue.value
 }
 console.log(clientX)
 // key修飾子
@@ -105,4 +111,19 @@ watch(
   <!-- watch -->
   <p>{{ count1 }}</p>
   <button @click="count1++">+1</button>
+  <!-- <div: :class="{red: isRed, 'bg-blue':isBgBlue}">Hello</div:> -->
+  <div class="border" :class="[className, { 'bg-blue': isBgBlue }]">Hello</div>
+  <button @click="toggleClass">toggle</button>
 </template>
+
+<style>
+.red {
+  color: red;
+}
+.bg-blue {
+  background-color: blue;
+}
+.border {
+  border: 1px solid red;
+}
+</style>
