@@ -20,6 +20,16 @@ console.log(clientX)
 const eventName = 'keyup'
 // v-model
 const userInput = ref('')
+import { ref, computed } from 'vue'
+// computed
+// リアクティブな計算プロパティを作成する仕組み。
+// 値を処理するだけ。値をセットできない。副作用を含めることができない。
+// templateの関数呼び出しでもcomputedと同様の処理を行うことが可能だが、template内のものが何か実行されるとtemplate全体的に再レンダリングが発生するのでcomputedを優先して使用する
+const score = ref(0)
+const evaluation = computed((value) => {
+  console.log(value)
+  return score.value > 3 ? 'Good' : 'Bad'
+})
 </script>
 <template>
   <!-- templateには単一の式のみかける -->
@@ -51,4 +61,8 @@ const userInput = ref('')
   <p>{{ userInput }}</p>
   <input v-model="userInput" type="text" />
   <button @click="userInput = 'hi'">button</button>
+  <!-- computed -->
+  <p>{{ evaluation }}</p>
+  <p>{{ score }}</p>
+  <button @click="score++">+1</button>
 </template>
