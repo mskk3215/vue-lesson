@@ -113,6 +113,7 @@ watch(
   <button @click="count1++">+1</button>
   <!-- <div: :class="{red: isRed, 'bg-blue':isBgBlue}">Hello</div:> -->
   <div class="border" :class="[className, { 'bg-blue': isBgBlue }]">Hello</div>
+  <div :style="{ color: 'red', backgroundColor: 'blue' }">Hello</div>
   <button @click="toggleClass">toggle</button>
 </template>
 
