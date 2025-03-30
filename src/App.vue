@@ -5,6 +5,8 @@ const count = ref(2)
 const count2 = ref(4)
 // v-htmlディレクティブ
 const message = ref('<h1>Password</h1>')
+import { ref, watchEffect } from 'vue'
+const count = ref(0)
 
 // v-bindディレクティブ
 const vueURL = ref('https://vuejs.org')
@@ -29,6 +31,18 @@ const score = ref(0)
 const evaluation = computed((value) => {
   console.log(value)
   return score.value > 3 ? 'Good' : 'Bad'
+// watchEffect
+// リアクティブなデータの変化を監視して、自動的に処理を実行する機能
+// 読み取りであれば監視する。代入では監視しない。
+watchEffect(() => {
+  console.log('watchEffect')
+  console.log(count.value)
+  // 以下のような非同期関数では正しく監視されない
+  setTimeout(() => {
+    console.log('after 1 second')
+    console.log(count.value)
+  }, 1000)
+  count.value = 'hello'
 })
 </script>
 <template>
@@ -40,6 +54,7 @@ const evaluation = computed((value) => {
   <!-- v-bindディレクティブは要素の属性 (HTML 属性やカスタム属性) に動的な値を結び付けるために使用 -->
   <a :id :href="vueURL" :foo>Vue.js</a>
   <!-- v-onディレクティブはイベントを設定する -->
+  <!-- watchEffect -->
   <p>{{ count }}</p>
   <!-- インラインハンドラー -->
   <button @click="count++">button</button>
@@ -65,4 +80,5 @@ const evaluation = computed((value) => {
   <p>{{ evaluation }}</p>
   <p>{{ score }}</p>
   <button @click="score++">+1</button>
+  <button @click="count++">+1</button>
 </template>
