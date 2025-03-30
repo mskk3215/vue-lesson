@@ -18,6 +18,8 @@ function clientX(event, times) {
 console.log(clientX)
 // key修飾子
 const eventName = 'keyup'
+// v-model
+const userInput = ref('')
 </script>
 <template>
   <!-- templateには単一の式のみかける -->
@@ -45,4 +47,8 @@ const eventName = 'keyup'
   <input type="text" @keyup.space.delete="count++" />
   <!-- scriptでキー修飾子を指定することもできる。 -->
   <input type="text" @[eventName].space.delete="count++" />
+  <!-- v-modelは双方向データバインディングのためのディレクティブ-->
+  <p>{{ userInput }}</p>
+  <input v-model="userInput" type="text" />
+  <button @click="userInput = 'hi'">button</button>
 </template>
