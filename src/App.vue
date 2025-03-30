@@ -9,4 +9,10 @@ const maybeOk = ref(true)
   <p v-if="ok">OK!</p>
   <p v-else-if="maybeOk">maybe OK!</p>
   <p v-else>not OK!...</p>
+  <!-- 同じ条件であればtemplateでまとめてかける -->
+  <template v-if="ok">
+    <p>OK!</p>
+    <p>Hello!</p>
+    <p>Hi!</p>
+  </template>
 </template>
