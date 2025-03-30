@@ -7,6 +7,8 @@ const count2 = ref(4)
 const message = ref('<h1>Password</h1>')
 import { ref, watchEffect } from 'vue'
 const count = ref(0)
+import { ref, watch } from 'vue'
+const count1 = ref(0)
 
 // v-bindディレクティブ
 const vueURL = ref('https://vuejs.org')
@@ -44,6 +46,25 @@ watchEffect(() => {
   }, 1000)
   count.value = 'hello'
 })
+// watch
+// watchはwatchEffectと異なり、明示的に値を監視する
+// 第一引数にvalueをつけない。0と同じになる。
+// 第一引数に関数を入れるとwatchEffectと同じような動きになる
+// newValueとoldValueが同じ値であれば第二引数は実行されない
+watch(
+  () => {
+    console.log('watch first argument')
+    return count1.value
+  },
+  (newValue, oldValue) => {
+    console.log('watch')
+    console.log('newValue', newValue)
+    console.log('oldValue', oldValue)
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 <template>
   <!-- templateには単一の式のみかける -->
@@ -81,4 +102,7 @@ watchEffect(() => {
   <p>{{ score }}</p>
   <button @click="score++">+1</button>
   <button @click="count++">+1</button>
+  <!-- watch -->
+  <p>{{ count1 }}</p>
+  <button @click="count1++">+1</button>
 </template>
