@@ -8,8 +8,12 @@ const fruits = ref([
 ])
 </script>
 <template>
-  <!-- v-forの時はkeyが必要。v-ifは自動で付与してくれる。 -->
-  <!-- indexとループのcontentは一致しないのでkeyにindexを使用しない -->
-  <!-- v-forでは分割代入ができる -->
-  <li v-for="({ id, name }, index) in fruits" :key="id">{{ name }}({{ index }})</li>
+  <!-- v-forとv-if両方ある場合、v-ifの方が先に動作する -->
+  <button @click="fruits.shift()">button</button>
+  <template v-for="({ id, name }, index) in fruits" :key="id">
+    <template v-if="id === 2">
+      <p>id: {{ id }}</p>
+      <input type="text" />{{ name }}({{ index }})
+    </template>
+  </template>
 </template>
