@@ -1,12 +1,12 @@
 <script setup>
 defineProps({
   countProps: {
-    type: [Number, String],
+    type: Number,
     required: true,
-    // default: 1,
   },
 })
+defineEmits(['resetCount'])
 </script>
 <template>
-  <p>count: {{ countProps }}</p>
+  <button @click="$emit('resetCount', 100)">Reset</button>
 </template>
