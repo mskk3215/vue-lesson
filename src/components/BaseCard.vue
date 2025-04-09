@@ -1,6 +1,7 @@
 <template>
   <div>
     <slot />
+    <slot>No content</slot>
   </div>
 </template>
 <style scoped>
