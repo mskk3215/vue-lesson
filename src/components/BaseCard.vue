@@ -1,9 +1,17 @@
+<script setup>
+import { ref } from 'vue'
+const pageCount = ref(1)
+</script>
 <template>
   <div>
     <slot />
     <slot>No content</slot>
+    <button @click="pageCount = 1">1</button>
+    <button @click="pageCount = 2">2</button>
+    <button @click="pageCount = 3">3</button>
     <header>
       <slot name="header" />
+      <slot name="header" :page-count="pageCount" />
     </header>
     <main><slot /></main>
     <footer><slot name="footer" />No content</footer>
