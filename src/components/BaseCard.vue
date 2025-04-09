@@ -2,6 +2,11 @@
   <div>
     <slot />
     <slot>No content</slot>
+    <header>
+      <slot name="header" />
+    </header>
+    <main><slot /></main>
+    <footer><slot name="footer" />No content</footer>
   </div>
 </template>
 <style scoped>
